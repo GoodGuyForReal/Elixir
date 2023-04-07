@@ -39,4 +39,19 @@ defmodule Card do
   def dealSplit(deck, count) do
     Enum.split(deck, count)
   end
+
+  # ? saving datas as file
+  def save(deck, filename) do
+    binary = :erlang.term_to_binary(deck)
+    File.write(filename, binary)
+  end
+
+  def load(filename) do
+    {status, binary} = File.read(filename)
+
+    case status do
+      :ok -> :erlang.binary_to_term binary
+      :error -> "something went wrong"
+    end
+  end
 end
