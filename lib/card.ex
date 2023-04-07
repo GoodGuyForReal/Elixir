@@ -35,6 +35,7 @@ defmodule Card do
   end
 
   # ? Enum.split(deck, split point) returns it splits array from your point and creates two array
+  # ? {hand , rest} = Card.dealSplit(deck,5) it can be also written like this in this way you assing varaible for to arrays
   def dealSplit(deck, count) do
     Enum.split(deck, count)
   end
