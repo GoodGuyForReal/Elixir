@@ -46,12 +46,24 @@ defmodule Card do
     File.write(filename, binary)
   end
 
+  # ? reading datas in the file and finiding file by name
   def load(filename) do
-    {status, binary} = File.read(filename)
-
-    case status do
-      :ok -> :erlang.binary_to_term binary
-      :error -> "something went wrong"
+    case File.read(filename) do
+      {:ok, binary} -> :erlang.binary_to_term(binary)
+      {:error, _reason} -> "something went wrong"
     end
+  end
+
+  def comp(split) do
+    deck = Card.nestedLoops()
+    shuffeledDeck = Card.shuffle(deck)
+    Card.dealSplit(shuffeledDeck, split)
+  end
+
+  # ? pipe oparater is passing the data to the next method event if it is a function it can take over paramater directly
+  def compPipe(split) do
+    Card.nestedLoops()
+    |> Card.shuffle()
+    |> Card.dealSplit(split)
   end
 end
