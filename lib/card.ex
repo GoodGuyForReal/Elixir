@@ -66,4 +66,18 @@ defmodule Card do
     |> Card.shuffle()
     |> Card.dealSplit(split)
   end
+
+  # ? merges two list
+  def merge do
+    my_list = [1, 2, 3]
+    list = [4, 5, 6]
+    Enum.concat(my_list, list)
+  end
+
+  # ? pushes data inside of list
+  def push do
+    my_list = [1, 2, 3]
+    list = [4, 5, 6]
+    my_list ++ list
+  end
 end
